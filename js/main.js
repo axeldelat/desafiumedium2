@@ -31,31 +31,8 @@ const urlBase = 'https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json'
             postsArray.push(postsObject[postID])
         }
     }
-    //para pegar postss al dom, como prueba
-    const appendPostsToDom = () =>{
-        postsArray.forEach((post) =>{
-            let article = document.createElement("ARTICLE")  //*<article></article>
-    
-            let title = document.createTextNode(post.title) //*titulo
-            let articleTitle = document.createElement("H1") //*<h1></h1>
-    
-            let author = document.createTextNode(post.author) //*autor
-            let articleAuthor = document.createElement("H3") //*<h3></h3>
-    
-            let content = document.createTextNode(post.content) //*contenido
-            let articleContent = document.createElement("P") //*<p></p>
-    
-            articleTitle.appendChild(title) //*<h1>titulo</h1>
-            articleAuthor.appendChild(author) //*<h3>autor</h3>
-            articleContent.appendChild(content) //*<p>contenido</p>
-    
-            article.appendChild(articleTitle) //*<article><h1>titulo</h1></article>
-            article.appendChild(articleAuthor) //*<article><h1>titulo</h1><h3>autor</h3></article>
-            article.appendChild(articleContent)//*<article><h1>titulo</h1><h3>autor</h3><p>contenido</p></article>
-    
-            document.getElementById("mainFilter").appendChild(article)
-        })
-    }
+
+
     //para borrar cada filtro
     const eraseAllPosts = () =>{
         postsArray = []
