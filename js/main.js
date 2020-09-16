@@ -31,14 +31,12 @@ const urlBase = 'https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json'
             postsArray.push(postsObject[postID])
         }
     }
-
-
     //para borrar cada filtro
     const eraseAllPosts = () =>{
         postsArray = []
         document.getElementById("mainFilter").innerHTML = ""
     }
-    
+    //El filtro principal
     document.getElementById("mainFilter").addEventListener("click", () => {
     
         eraseAllPosts()
@@ -47,7 +45,7 @@ const urlBase = 'https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json'
     
         appendPostsToDom()
     })
-    
+    //filtro por artículo nuevo
     document.getElementById("filtrarNew").addEventListener("click",()=>{
     
         eraseAllPosts()
@@ -62,7 +60,7 @@ const urlBase = 'https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json'
     
         appendPostsToDom()
     })
-    
+    // Filtrar por autor 
     document.getElementById("filtrarPorAutor").addEventListener("click",()=>{
     
         eraseAllPosts()
