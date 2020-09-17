@@ -1,4 +1,4 @@
-const urlFirebase = 'https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json'
+//const urlFirebase = 'https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json'
 //Alfredo--
 
     // let postsObject
@@ -421,7 +421,7 @@ let postData = JSON.stringify({ lst: arrayPostsMasivos });
     })
 }
 
-//postArray()
+postArray()
 
 //validación de posts (chequeo)
 const getPosts = () => {
