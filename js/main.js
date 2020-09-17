@@ -68,6 +68,7 @@ const urlFirebase = 'https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.j
 
 let postList = []
 let featuredPostList;
+let popularPostList;
 
 const newRandomDate = () => {
     let months = [ 'Jan' , 'Feb' , 'Mar' , 'Apr' , 'May' ,'Jun' , 'Jul' , 'Aug', 'Sep', 'Oct', 'Nov', 'Dic']
@@ -119,20 +120,20 @@ const getPosts = () => {
 const postPrint = () => {
     console.log(postList)
     for (const post in postList) {
-        console.log(post)
-        let tectnode = `
+        console.log(postList[post])
+        let textnode = `
         <li class="media mb-5">
                         <div class="media-body row d-flex justify-content-between align-items-start">
                             <div class="col-8 pr-0">
                                 <span class="origin-tag text-uppercase light-grey-text">Popular on Medium</span>
-                                <h3 class="article-title darkest-grey-text mb-0">Lorem ipsum dolor sit amet</h3>
+                                <h3 class="article-title darkest-grey-text mb-0">${postList[post].title}</h3>
                                 <p class="article-extract light-grey-text pb-0">
                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                                 </p>
                                 <div class="meta-info row">
                                     <div class="meta-content col-8">
                                         <span class="article-author-info darkest-grey-text">
-                                            Mario López
+                                        ${postList[post].author}
                                         </span>
                                         <p class="article-date light-grey-text d-table-cell" data-toggle="tooltip" data-placement="top" title="Updated May 21">
                                             Aug 11 ·<span title="3 min read"> 3 min read</span>
@@ -161,7 +162,7 @@ const postPrint = () => {
                         </div>
                     </li>
         `
-        $( `${tectnode}` ).appendTo('#laaa')
+        $( `${textnode}` ).appendTo('#all-posts')
     }
 }
 
@@ -172,7 +173,7 @@ const postPrint = () => {
 //Inicio
 $(document).ready(function(){
     getPosts()
-
+    postPrint()
     console.log(postList)
     console.log(featuredPostList)
 })
