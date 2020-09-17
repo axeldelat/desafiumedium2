@@ -1,86 +1,74 @@
-<<<<<<< HEAD
-//Alfredo-- Coolio : class = article-author-info y class m-0
-/* dejar claro que se va a filtrar, primer ensayo sería en base a autor y se puede luego agregar Tags. 
-el html debería tener un class que sea filtrable, agregar class tag. 
-- coleccion con todos  feature-article main-articles
-*/
-/*et primerArray = []
-let articulosFeatured = () => document.getElementById(feature-article)
-    console.log(articulosFeatured) */
-   
-=======
-const urlBase = 'https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json'
-
+const urlFirebase = 'https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json'
 //Alfredo--
->>>>>>> 365b3f9856356fb013645617389817d531087fe9
 
-    let postsObject
-    let postsArray = []
-     //este es el http request
-    const getPostsFromFirebase = () => {
-        let getPosts = new XMLHttpRequest()
-        getPosts.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                postsObject = JSON.parse(this.responseText)
-            }
-        }
-        getPosts.open("GET", "https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json", true)
-        getPosts.send()
+    // let postsObject
+    // let postsArray = []
+    //  //este es el http request
+    // const getPostsFromFirebase = () => {
+    //     let getPosts = new XMLHttpRequest()
+    //     getPosts.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             postsObject = JSON.parse(this.responseText)
+    //         }
+    //     }
+    //     getPosts.open("GET", "https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json", true)
+    //     getPosts.send()
         
-        for (const postID in postsObject) {
-            postsArray.push(postsObject[postID])
-        }
-    }
-    //para borrar cada filtro
-    const eraseAllPosts = () =>{
-        postsArray = []
-        document.getElementById("mainFilter").innerHTML = ""
-    }
-    //El filtro principal
-    document.getElementById("mainFilter").addEventListener("click", () => {
+    //     for (const postID in postsObject) {
+    //         postsArray.push(postsObject[postID])
+    //     }
+    // }
+    // //para borrar cada filtro
+    // const eraseAllPosts = () =>{
+    //     postsArray = []
+    //     document.getElementById("mainFilter").innerHTML = ""
+    // }
+    // //El filtro principal
+    // document.getElementById("mainFilter").addEventListener("click", () => {
     
-        eraseAllPosts()
+    //     eraseAllPosts()
     
-        getPostsFromFirebase()
+    //     getPostsFromFirebase()
     
-        appendPostsToDom()
-    })
-    //filtro por artículo nuevo
-    document.getElementById("filtrarNew").addEventListener("click",()=>{
+    //     appendPostsToDom()
+    // })
+    // //filtro por artículo nuevo
+    // document.getElementById("filtrarNew").addEventListener("click",()=>{
     
-        eraseAllPosts()
+    //     eraseAllPosts()
     
-        getPostsFromFirebase()
+    //     getPostsFromFirebase()
     
-        postsArray = postsArray.filter((post)=>{
-            if(post.tags.includes('new')){
-                return true
-            }
-        })
+    //     postsArray = postsArray.filter((post)=>{
+    //         if(post.tags.includes('new')){
+    //             return true
+    //         }
+    //     })
     
-        appendPostsToDom()
-    })
-    // Filtrar por autor 
-    document.getElementById("filtrarPorAutor").addEventListener("click",()=>{
+    //     appendPostsToDom()
+    // })
+    // // Filtrar por autor 
+    // document.getElementById("filtrarPorAutor").addEventListener("click",()=>{
     
-        eraseAllPosts()
+    //     eraseAllPosts()
     
-        getPostsFromFirebase()
+    //     getPostsFromFirebase()
     
-        postsArray = postsArray.filter((post)=>{
-            if(post.author === 'Nome Cognome'){
-                return true
-            }
-        })
+    //     postsArray = postsArray.filter((post)=>{
+    //         if(post.author === 'Nome Cognome'){
+    //             return true
+    //         }
+    //     })
     
-        appendPostsToDom()
-    })
+    //     appendPostsToDom()
+    // })
 
 
-/*
 //Axel--
-//Get Posts
-const postList = []
+
+let postList = []
+let featuredPostList;
+
 const newRandomDate = () => {
     let months = [ 'Jan' , 'Feb' , 'Mar' , 'Apr' , 'May' ,'Jun' , 'Jul' , 'Aug', 'Sep', 'Oct', 'Nov', 'Dic']
     let randomMonth = months[Math.floor(Math.random() * 11)]
@@ -99,28 +87,34 @@ const newRandomAuthor = () => {
     let randomAuthor = authors[Math.floor(Math.random() * 11)]
     return randomAuthor
 }
+//Get Posts
 
 const getPosts = () => {
-    $.get( urlBase, function( data ) {
-        console.log( typeof data ); // string
-        for ( const key in data ) {
-
-            let post = {
-                id: key,
-                category: data[key].category,
-                content: data[key].content,
-                featured: data[key].featured,
-                popular: data[key].popular,
-                imageurl: data[key].imageurl,
-                title: data[key].title,
-                author: newRandomAuthor() ,
-                date: newRandomDate() ,
-                timeToRead: newRandomRead(),
+    $.ajax({
+        url: urlFirebase,
+        method: "GET",
+        success: data => {
+            for ( const key in data ) {
+                let post = {
+                    id: key,
+                    category: data[key].category,
+                    content: data[key].content,
+                    featured: data[key].featured,
+                    popular: data[key].popular,
+                    imageurl: data[key].imageurl,
+                    title: data[key].title,
+                    author: newRandomAuthor() ,
+                    date: newRandomDate() ,
+                    timeToRead: newRandomRead(),
+                }
+                postList.push( post )
+                featuredPostList = postList.filter( post => post.featured )
             }
-            postList.push( post )
-        }
-        });
+        },
+        async: false
+    });
 }
+
 //Post Printer
 const postPrint = () => {
     console.log(postList)
@@ -171,6 +165,17 @@ const postPrint = () => {
     }
 }
 
-//Haro-- */
+//Haro--
 
 //Mauro
+
+//Inicio
+$(document).ready(function(){
+    getPosts()
+
+    console.log(postList)
+    console.log(featuredPostList)
+})
+
+
+
