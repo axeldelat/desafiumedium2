@@ -122,9 +122,10 @@ const getPosts = () => {
 
 //Post Printer
 const postPrint = () => {
-    for (const post in postList.reverse()) {
-        let textnodeAllPost = `
-        <li class="media mb-5">
+    let textnodeAllPost =""
+    for ( post in postList.reverse()) {
+        textnodeAllPost = textnodeAllPost + `
+        <li class="media mb-5" data-toggle="modal" data-target="#${postList[post].id}>
                         <div class="media-body row d-flex justify-content-between align-items-start">
                             <div class="col-8 pr-0">
                                 <span class="origin-tag text-uppercase light-grey-text">Popular on Medium</span>
@@ -162,8 +163,31 @@ const postPrint = () => {
                                 <img src="${postList[post].imageUrl}" class="img-fluid" alt="">
                             </div>
                         </div>
+
+
+                        <div class="modal fade" id="${postList[post].id}">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1>${postList[post].title}</h1>
+                                </div>
+                                <div class="modal-body">
+                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${postList[post].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p>${postList[post].date} &middot; ${postList[post].timeToRead} min to read.</p>
+                                <img src="${postList[post].imageurl}" width="100%" class="mb-3">
+                                <p class="text-center">${postList[post].content}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button value="close" data-dismiss="modal" class="btn btn-primary w-100">x</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     </li>
         `
+        $("#all-posts").html("");
+
         $( `${textnodeAllPost}` ).appendTo('#all-posts')
     }
 
@@ -332,19 +356,41 @@ const postPrint = () => {
 
 //Mauro
 
+let categories = [];
+let theUl = document.getElementById("categoryUl");
+
 //Inicio
 $(document).ready(function(){
     getPosts()
-    postPrint()
-    console.log('This it the Posts List ▼▼▼')
-    console.log(postList)
-    console.log('This it the Featured Posts List ▼▼▼')
-    console.log(featuredPostList)
-    console.log('This it the Popular Posts List ▼▼▼')
-    console.log(popularPostList)
-    console.log('This it the Editor´s Pick List ▼▼▼')
-    console.log(editorsPick)
+    postPrint(postList);
+    postList.forEach(post =>{
+        if (!categories.includes(post.category)){
+            categories.push(post.category);
+        }
+    });
+    categories.forEach(category =>{
+        $(theUl).append(`<li class="navli ml-5 mr-2 filterCategory">${category}<li>`);
+    })
+    $(".filterCategory").click(function (){
+        // $("#all-posts").html("");
+        let result = postList.filter(curr =>{
+            if (curr.category === $(this).text()){
+                return curr;
+            }
+        });
+    // postPrint(result);
+    console.log(result);
+    });
+    $(".filterAll").click(function (){
+        $("#all-posts").html("");
+        postPrint(postList);
+    });
+    // console.log('This it the Posts List ▼▼▼')
+    // console.log(postList)
+    // console.log('This it the Featured Posts List ▼▼▼')
+    // console.log(featuredPostList)
+    // console.log('This it the Popular Posts List ▼▼▼')
+    // console.log(popularPostList)
+    // console.log('This it the Editor´s Pick List ▼▼▼')
+    // console.log(editorsPick)
 })
-
-
-
