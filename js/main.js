@@ -411,7 +411,7 @@ const enviarPostStringificado =() => {
         let stringPost = JSON.stringify(post) 
         $.ajax({
             type: "POST",
-            url: "https://alfredoprueba-4cebf.firebaseio.com/hamaalax/med/posts/.json",
+            url: "https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json",
             data: stringPost,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -425,11 +425,11 @@ const enviarPostStringificado =() => {
     })
 }
 
-//enviarPostStringificado()
+enviarPostStringificado()
 
 //validación de posts (chequeo)
 const getPosts = () => {
-    $.get("https://alfredoprueba-4cebf.firebaseio.com/hamaalax/med/posts/.json", function(showData){
+    $.get("https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json", function(showData){
         console.log(showData);
         console.log("va la data en este console call")
       });
