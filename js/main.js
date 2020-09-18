@@ -1,67 +1,4 @@
 const urlFirebase = 'https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json'
-//Alfredo--
-
-    // let postsObject
-    // let postsArray = []
-    //  //este es el http request
-    // const getPostsFromFirebase = () => {
-    //     let getPosts = new XMLHttpRequest()
-    //     getPosts.onreadystatechange = function() {
-    //         if (this.readyState == 4 && this.status == 200) {
-    //             postsObject = JSON.parse(this.responseText)
-    //         }
-    //     }
-    //     getPosts.open("GET", "https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json", true)
-    //     getPosts.send()
-        
-    //     for (const postID in postsObject) {
-    //         postsArray.push(postsObject[postID])
-    //     }
-    // }
-    // //para borrar cada filtro
-    // const eraseAllPosts = () =>{
-    //     postsArray = []
-    //     document.getElementById("mainFilter").innerHTML = ""
-    // }
-    // //El filtro principal
-    // document.getElementById("mainFilter").addEventListener("click", () => {
-    
-    //     eraseAllPosts()
-    
-    //     getPostsFromFirebase()
-    
-    //     appendPostsToDom()
-    // })
-    // //filtro por artículo nuevo
-    // document.getElementById("filtrarNew").addEventListener("click",()=>{
-    
-    //     eraseAllPosts()
-    
-    //     getPostsFromFirebase()
-    
-    //     postsArray = postsArray.filter((post)=>{
-    //         if(post.tags.includes('new')){
-    //             return true
-    //         }
-    //     })
-    
-    //     appendPostsToDom()
-    // })
-    // // Filtrar por autor 
-    // document.getElementById("filtrarPorAutor").addEventListener("click",()=>{
-    
-    //     eraseAllPosts()
-    
-    //     getPostsFromFirebase()
-    
-    //     postsArray = postsArray.filter((post)=>{
-    //         if(post.author === 'Nome Cognome'){
-    //             return true
-    //         }
-    //     })
-    
-    //     appendPostsToDom()
-    // })
 
 
 //Axel--
@@ -122,10 +59,10 @@ const getPosts = () => {
 
 //Post Printer
 const postPrint = () => {
-    let textnodeAllPost =""
+    let textnodeAllPost = ""
     for ( post in postList.reverse()) {
         textnodeAllPost = textnodeAllPost + `
-        <li class="media mb-5" data-toggle="modal" data-target="#${postList[post].id}>
+        <li class="media mb-5" data-toggle="modal" data-target="#${postList[post].id}">
                         <div class="media-body row d-flex justify-content-between align-items-start">
                             <div class="col-8 pr-0">
                                 <span class="origin-tag text-uppercase light-grey-text">Popular on Medium</span>
@@ -174,7 +111,7 @@ const postPrint = () => {
                                 <div class="modal-body">
                                 <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${postList[post].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
                                 <p>${postList[post].date} &middot; ${postList[post].timeToRead} min to read.</p>
-                                <img src="${postList[post].imageurl}" width="100%" class="mb-3">
+                                <img src="${postList[post].imageUrl}" width="100%" class="mb-3">
                                 <p class="text-center">${postList[post].content}</p>
                                 </div>
                                 <div class="modal-footer">
@@ -187,14 +124,14 @@ const postPrint = () => {
                     </li>
         `
         $("#all-posts").html("");
-
+        
         $( `${textnodeAllPost}` ).appendTo('#all-posts')
     }
 
     let featured4 = featuredPostList.reverse().slice(0,4)
     let textNodeFirstFeatured = `
-    <img src="${featured4[0].imageUrl}" class="card-img-top" style="height: 150px;">
-                    <div class="card-body" style="margin-left: 50px;"> 
+    <img src="${featured4[0].imageUrl}" class="card-img-top" style="height: 150px;" data-toggle="modal" data-target="#${featured4[0].id}">
+                    <div class="card-body" style="margin-left: 50px;" data-toggle="modal" data-target="#${featured4[0].id}"> 
                         <h3 class="article-title">${featured4[0].title}</h3> 
                         <p class="card-text" style="color:#757575;">${featured4[0].content.substr(0,100)} ...</p>
                         <div class= "main-article-footer d-flex justify-content-between">
@@ -216,11 +153,30 @@ const postPrint = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div class="modal fade" id="${featured4[0].id}">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1>${featured4[0].title}</h1>
+                                </div>
+                                <div class="modal-body">
+                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${featured4[0].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p>${featured4[0].date} &middot; ${featured4[0].timeToRead} min to read.</p>
+                                <img src="${featured4[0].imageUrl}" width="100%" class="mb-3">
+                                <p class="text-center">${featured4[0].content}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button value="close" data-dismiss="modal" class="btn btn-primary w-100">x</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
     `
     $( `${textNodeFirstFeatured}` ).appendTo('#first-featured-post')
 
     let textNode2to4 = `
-    <li class="media" style="margin-bottom: inherit;">
+    <li class="media" style="margin-bottom: inherit;" data-toggle="modal" data-target="#${featured4[1].id}">
     <img src="${featured4[1].imageUrl}" class="mr-3" style="width: 100px; heigth:100px;">
     <div class="media-body">
         <h4 class="mt-0 mb-1 cursor-pointer">${featured4[1].title}</h4>
@@ -241,8 +197,28 @@ const postPrint = () => {
                 </div>
             </div>
     </div>
+
+    <div class="modal fade" id="${featured4[1].id}">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1>${featured4[1].title}</h1>
+                                </div>
+                                <div class="modal-body">
+                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${featured4[1].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p>${featured4[1].date} &middot; ${featured4[1].timeToRead} min to read.</p>
+                                <img src="${featured4[1].imageUrl}" width="100%" class="mb-3">
+                                <p class="text-center">${featured4[1].content}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button value="close" data-dismiss="modal" class="btn btn-primary w-100">x</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 </li>
-<li class="media" style="margin-bottom: inherit;">
+<li class="media" style="margin-bottom: inherit;" data-toggle="modal" data-target="#${featured4[2].id}">
     <img src="${featured4[2].imageUrl}" class="mr-3" style="width: 100px; heigth:100px;">
     <div class="media-body">
         <h4 class="mt-0 mb-1 cursor-pointer">${featured4[2].title}</h4>
@@ -263,8 +239,28 @@ const postPrint = () => {
                 </div>
             </div>
     </div>
+
+    <div class="modal fade" id="${featured4[2].id}">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1>${featured4[2].title}</h1>
+                                </div>
+                                <div class="modal-body">
+                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${featured4[2].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p>${featured4[2].date} &middot; ${featured4[2].timeToRead} min to read.</p>
+                                <img src="${featured4[2].imageUrl}" width="100%" class="mb-3">
+                                <p class="text-center">${featured4[2].content}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button value="close" data-dismiss="modal" class="btn btn-primary w-100">x</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 </li>
-<li class="media" style="margin-bottom: inherit;">
+<li class="media" style="margin-bottom: inherit;" data-toggle="modal" data-target="#${featured4[3].id}">
     <img src="${featured4[3].imageUrl}" class="mr-3" style="width: 100px; heigth:100px;">
     <div class="media-body">
         <h4 class="mt-0 mb-1 cursor-pointer">${featured4[3].title}</h4>
@@ -285,14 +281,33 @@ const postPrint = () => {
                 </div>
             </div>
     </div>
+
+    <div class="modal fade" id="${featured4[3].id}">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1>${featured4[3].title}</h1>
+                                </div>
+                                <div class="modal-body">
+                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${featured4[3].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p>${featured4[3].date} &middot; ${featured4[3].timeToRead} min to read.</p>
+                                <img src="${featured4[3].imageUrl}" width="100%" class="mb-3">
+                                <p class="text-center">${featured4[3].content}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button value="close" data-dismiss="modal" class="btn btn-primary w-100">x</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 </li>
     `
     $( `${textNode2to4}` ).appendTo('#featured-3')
 
     let editorsPickFront = editorsPick.reverse()
     let textNodeEditorsPick = `
-    <img src="${editorsPickFront[0].imageUrl}" class="card-img-top" style="height: 150px;">
-    <div class="card-body" style="margin-left: -20px;">
+    <img src="${editorsPickFront[0].imageUrl}" class="card-img-top" style="height: 150px;" data-toggle="modal" data-target="#${editorsPickFront[0].id}">
+    <div class="card-body" style="margin-left: -20px;" data-toggle="modal" data-target="#${editorsPickFront[0].id}">
         <h3>${editorsPickFront[0].title}</h3>
         <p class="card-text" style="color:#757575;">${editorsPickFront[0].content.substr(0,100)} ...</p>
         <div class= "main-article-footer d-flex justify-content-between">
@@ -314,13 +329,34 @@ const postPrint = () => {
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="${editorsPickFront[0].id}">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1>${editorsPickFront[0].title}</h1>
+                                </div>
+                                <div class="modal-body">
+                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${editorsPickFront[0].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p>${editorsPickFront[0].date} &middot; ${editorsPickFront[0].timeToRead} min to read.</p>
+                                <img src="${editorsPickFront[0].imageUrl}" width="100%" class="mb-3">
+                                <p class="text-center">${editorsPickFront[0].content}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button value="close" data-dismiss="modal" class="btn btn-primary w-100">x</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
     `
     $( `${textNodeEditorsPick}` ).appendTo('#editors-pick')
 
     let popular4 = popularPostList.reverse().slice(0,4)
     popular4.forEach(post => {
         let TextNodePopularPosts = `
-            <li class="media mb-3">
+            <li class="media mb-3" data-toggle="modal" data-target="#${post.id}">
                             <div class="media-body row d-flex justify-content-between align-items-start">
                                 <div class="popularity col-2 text-right pr-0 super-light-grey-text">
                                     <span>${popular4.indexOf(post)+1}</span>
@@ -347,6 +383,26 @@ const postPrint = () => {
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="modal fade" id="${post.id}">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1>${post.title}</h1>
+                                    </div>
+                                    <div class="modal-body">
+                                    <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${post.author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                    <p>${post.date} &middot; ${post.timeToRead} min to read.</p>
+                                    <img src="${post.imageUrl}" width="100%" class="mb-3">
+                                    <p class="text-center">${post.content}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button value="close" data-dismiss="modal" class="btn btn-primary w-100">x</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            
                         </li>
             `
         $( `${TextNodePopularPosts}` ).appendTo('.popular-posts')
