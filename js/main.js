@@ -121,23 +121,21 @@ const getPosts = () => {
 }
 
 //Post Printer
-const postPrint = (arr) => {
-    console.log(arr)
-    for (const post in arr) {
-        console.log(arr[post])
-        let textnode = `
-        <li class="media mb-5" data-toggle="modal" data-target="#${arr[post].id}">
+const postPrint = () => {
+    for (const post in postList.reverse()) {
+        let textnodeAllPost = `
+        <li class="media mb-5">
                         <div class="media-body row d-flex justify-content-between align-items-start">
                             <div class="col-8 pr-0">
                                 <span class="origin-tag text-uppercase light-grey-text">Popular on Medium</span>
-                                <h3 class="article-title darkest-grey-text mb-0">${arr[post].title}</h3>
+                                <h3 class="article-title darkest-grey-text mb-0">${postList[post].title}</h3>
                                 <p class="article-extract light-grey-text pb-0">
                                 ${postList[post].content.substr(0,100)}
                                 ...</p>
                                 <div class="meta-info row">
                                     <div class="meta-content col-8">
                                         <span class="article-author-info darkest-grey-text">
-                                        ${arr[post].author}
+                                        ${postList[post].author}
                                         </span>
                                         <p class="article-date light-grey-text d-table-cell" data-toggle="tooltip" data-placement="top" title="Updated May 21">
                                             Aug 11 ·<span title="${postList[post].timeToRead} min read"> ${postList[post].timeToRead} min read</span>
@@ -164,29 +162,8 @@ const postPrint = (arr) => {
                                 <img src="${postList[post].imageUrl}" class="img-fluid" alt="">
                             </div>
                         </div>
-
-                    <div class="modal fade" id="${arr[post].id}">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1>${arr[post].title}</h1>
-                                </div>
-                                <div class="modal-body">
-                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${arr[post].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
-                                <p>${arr[post].date} &middot; ${arr[post].timeToRead} min to read.</p>
-                                <img src="${arr[post].imageurl}" width="100%" class="mb-3">
-                                <p class="text-center">${arr[post].content}</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button value="close" data-dismiss="modal" class="btn btn-primary w-100">x</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        </li>
+                    </li>
         `
-        $("#all-posts").html("");
-
         $( `${textnodeAllPost}` ).appendTo('#all-posts')
     }
 
@@ -355,35 +332,10 @@ const postPrint = (arr) => {
 
 //Mauro
 
-
-
-let categories = [];
-let theUl = document.getElementById("categoryUl");
-
-
-
 //Inicio
 $(document).ready(function(){
     getPosts()
-    postPrint(postList);
-    postList.forEach(post =>{
-        if (!categories.includes(post.category)){
-            categories.push(post.category);
-        }
-    });
-    categories.forEach(category =>{
-        $(theUl).append(`<li class="navli ml-5 mr-2 filterCategory">${category}<li>`);
-    })
-    $(".filterCategory").click(function (){
-        console.log($(this).text());
-        let result = postList.filter(curr =>{
-            if (curr.category === $(this).text()){
-                return curr;
-            }
-        });
-    postPrint(result);
-    console.log(result);
-    });
+    postPrint()
     console.log('This it the Posts List ▼▼▼')
     console.log(postList)
     console.log('This it the Featured Posts List ▼▼▼')
@@ -393,10 +345,6 @@ $(document).ready(function(){
     console.log('This it the Editor´s Pick List ▼▼▼')
     console.log(editorsPick)
 })
-    $(".filterAll").click(function (event){
-    event.preventDefault();
-    postPrint(postList);
-    console.log(postList);
-    });
-})
+
+
 
