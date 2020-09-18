@@ -165,11 +165,65 @@ const postPrint = () => {
         $( `${textnode}` ).appendTo('#all-posts')
     }
 }
-
 //Haro--
-
+function resetFormModal() {
+    $("#create-post-form").reset()
+}
+const savePost = () => {
+    let title = $("#inputTitle").val();
+    let content = $("#textareaContent").val();
+    let category = $("#inputCategory").val();
+    let editorsPick = ""     
+    let featured = ""
+    let popular = ""
+    let imageUrl     
+    // let randomURL = 'https://source.unsplash.com/random/200x200';    
+    request = new XMLHttpRequest();
+    request.open("GET", "https://source.unsplash.com/random/1920x1080/?wallpaper,landscape", false);
+    request.send(null);
+    request.onreadystatechange = function() {
+        if (request.readyState === 4) {
+            if (request.status === 200) {
+                console.log(request.responseURL);            
+                return request.responseURL
+            }
+        }
+    }
+    imageUrl = request.responseURL
+    $("input:checkbox[id=editorsPickCheck]:checked").val() ? editorsPick = "true": editorsPick = "false"
+    $("input:checkbox[id=featuredCheck]:checked").val() ? featured = "true": featured = "false"
+    $("input:checkbox[id=popularCheck]:checked").val() ? popular = "true": popular = "false"
+    let postToSave = { title, content, category, editorsPick, featured, popular, imageUrl }
+    console.log(postToSave)
+    $.ajax({
+        url: `https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json`,
+        method:"POST",
+        data: JSON.stringify(postToSave),
+        success: ( response) => {
+            console.log("Saved post")
+        },
+        error: ( error ) => {
+            console.log("Don't saved post")
+        }
+    })    
+    $("#inputTitle").val("")
+    $("#textareaContent").val("")
+    $("#inputCategory").val("Other")
+    $("#editorsPickCheck").prop('checked', false);
+    $("#featuredCheck").prop('checked', false);
+    $("#popularCheck").prop('checked', false);
+}
+// $("#savePost").click(savePost)
+document.getElementById("savePost").addEventListener("click", () => {
+    let title = $("#inputTitle").val()
+    let content = $("#textareaContent").val()
+    if (title === null || title === '' || content === null || content === '') {
+        console.log('No se puede ingresar post vacío')
+    } else {        
+        savePost();         
+    }
+})
 //Mauro
-
 //Inicio
 $(document).ready(function(){
     getPosts()
@@ -177,6 +231,3 @@ $(document).ready(function(){
     console.log(postList)
     console.log(featuredPostList)
 })
-
-
-
