@@ -392,13 +392,21 @@ const savePost = () => {
         error: ( error ) => {
             console.log("Don't saved post")
         }
-    })    
+    })
     $("#inputTitle").val("")
     $("#textareaContent").val("")
     $("#inputCategory").val("Other")
     $("#editorsPickCheck").prop('checked', false);
     $("#featuredCheck").prop('checked', false);
     $("#popularCheck").prop('checked', false);
+
+    $('#all-posts').empty()
+    $('#first-featured-post').empty()
+    $('#featured-3').empty()
+    $('#editors-pick').empty()
+    $('.popular-posts').empty()
+    getPosts()
+    postPrint()
 }
 // $("#savePost").click(savePost)
 document.getElementById("savePost").addEventListener("click", () => {
@@ -406,8 +414,8 @@ document.getElementById("savePost").addEventListener("click", () => {
     let content = $("#textareaContent").val()
     if (title === null || title === '' || content === null || content === '') {
         console.log('No se puede ingresar post vacío')
-    } else {        
-        savePost();         
+    } else {
+        savePost();
     }
 })
 
