@@ -109,7 +109,7 @@ const postPrint = () => {
                                     <h1>${postList[post].title}</h1>
                                 </div>
                                 <div class="modal-body">
-                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${postList[post].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p class="d-block"><img src="https://source.unsplash.com/random/${newProfileImage()}x${newProfileImage()}" class="rounded-circle mr-2"><strong>${postList[post].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
                                 <p>${postList[post].date} &middot; ${postList[post].timeToRead} min to read.</p>
                                 <img src="${postList[post].imageUrl}" width="100%" class="mb-3">
                                 <p class="text-center">${postList[post].content}</p>
@@ -124,7 +124,7 @@ const postPrint = () => {
                     </li>
         `
         $("#all-posts").html("");
-        
+
         $( `${textnodeAllPost}` ).appendTo('#all-posts')
     }
 
@@ -161,7 +161,7 @@ const postPrint = () => {
                                     <h1>${featured4[0].title}</h1>
                                 </div>
                                 <div class="modal-body">
-                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${featured4[0].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p class="d-block"><img src="https://source.unsplash.com/random/${newProfileImage()}x${newProfileImage()}" class="rounded-circle mr-2"><strong>${featured4[0].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
                                 <p>${featured4[0].date} &middot; ${featured4[0].timeToRead} min to read.</p>
                                 <img src="${featured4[0].imageUrl}" width="100%" class="mb-3">
                                 <p class="text-center">${featured4[0].content}</p>
@@ -205,7 +205,7 @@ const postPrint = () => {
                                     <h1>${featured4[1].title}</h1>
                                 </div>
                                 <div class="modal-body">
-                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${featured4[1].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p class="d-block"><img src="https://source.unsplash.com/random/${newProfileImage()}x${newProfileImage()}" class="rounded-circle mr-2"><strong>${featured4[1].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
                                 <p>${featured4[1].date} &middot; ${featured4[1].timeToRead} min to read.</p>
                                 <img src="${featured4[1].imageUrl}" width="100%" class="mb-3">
                                 <p class="text-center">${featured4[1].content}</p>
@@ -247,7 +247,7 @@ const postPrint = () => {
                                     <h1>${featured4[2].title}</h1>
                                 </div>
                                 <div class="modal-body">
-                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${featured4[2].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p class="d-block"><img src="https://source.unsplash.com/random/${newProfileImage()}x${newProfileImage()}" class="rounded-circle mr-2"><strong>${featured4[2].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
                                 <p>${featured4[2].date} &middot; ${featured4[2].timeToRead} min to read.</p>
                                 <img src="${featured4[2].imageUrl}" width="100%" class="mb-3">
                                 <p class="text-center">${featured4[2].content}</p>
@@ -289,7 +289,7 @@ const postPrint = () => {
                                     <h1>${featured4[3].title}</h1>
                                 </div>
                                 <div class="modal-body">
-                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${featured4[3].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p class="d-block"><img src="https://source.unsplash.com/random/${newProfileImage()}x${newProfileImage()}" class="rounded-circle mr-2"><strong>${featured4[3].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
                                 <p>${featured4[3].date} &middot; ${featured4[3].timeToRead} min to read.</p>
                                 <img src="${featured4[3].imageUrl}" width="100%" class="mb-3">
                                 <p class="text-center">${featured4[3].content}</p>
@@ -337,7 +337,7 @@ const postPrint = () => {
                                     <h1>${editorsPickFront[0].title}</h1>
                                 </div>
                                 <div class="modal-body">
-                                <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${editorsPickFront[0].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                <p class="d-block"><img src="https://source.unsplash.com/random/${newProfileImage()}x${newProfileImage()}" class="rounded-circle mr-2"><strong>${editorsPickFront[0].author}</strong> <button class="btn btn-outline-success">Follow</button></p>
                                 <p>${editorsPickFront[0].date} &middot; ${editorsPickFront[0].timeToRead} min to read.</p>
                                 <img src="${editorsPickFront[0].imageUrl}" width="100%" class="mb-3">
                                 <p class="text-center">${editorsPickFront[0].content}</p>
@@ -391,7 +391,7 @@ const postPrint = () => {
                                         <h1>${post.title}</h1>
                                     </div>
                                     <div class="modal-body">
-                                    <p class="d-block"><img src="https://source.unsplash.com/random/50x50" class="rounded-circle mr-2"><strong>${post.author}</strong> <button class="btn btn-outline-success">Follow</button></p>
+                                    <p class="d-block"><img src="https://source.unsplash.com/random/${newProfileImage()}x${newProfileImage()}" class="rounded-circle mr-2"><strong>${post.author}</strong> <button class="btn btn-outline-success">Follow</button></p>
                                     <p>${post.date} &middot; ${post.timeToRead} min to read.</p>
                                     <img src="${post.imageUrl}" width="100%" class="mb-3">
                                     <p class="text-center">${post.content}</p>
@@ -408,6 +408,29 @@ const postPrint = () => {
         $( `${TextNodePopularPosts}` ).appendTo('.popular-posts')
     });
 }
+const newProfileImage = () => {
+    let num = Math.floor(Math.random() * 52);
+    while(num < 47){
+        num = Math.floor(Math.random() * 52);
+    }
+    return num;
+    // let profileImageUrl;
+    // request = new XMLHttpRequest();
+    // request.open("GET", "https://source.unsplash.com/random/${newProfileImage()}x${newProfileImage()}", false);
+    // request.send(null);
+    // request.onreadystatechange = function() {
+    //     if (request.readyState === 4) {
+    //         if (request.status === 200) {
+    //             console.log(request.responseURL);            
+    //             return request.profileImageUrl;
+    //         }
+    //     }
+    // }
+    // profileImageUrl = request.responseURL;
+    // return profileImageUrl;
+}
+
+
 //Haro--
 function resetFormModal() {
     $("#create-post-form").reset()
