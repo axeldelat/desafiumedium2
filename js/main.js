@@ -1,4 +1,4 @@
-const urlFirebase = 'https://ajaxclass9g.firebaseio.com/hamaalax/medium/posts/.json'
+const urlFirebase = 'http://localhost:8080/entries'
 
 
 //Axel--
@@ -32,26 +32,32 @@ const getPosts = () => {
     $.ajax({
         url: urlFirebase,
         method: "GET",
-        success: data => {
-            for ( const key in data ) {
-                let post = {
-                    id: key,
-                    category: data[key].category,
-                    content: data[key].content,
-                    featured: data[key].featured,
-                    editorsPick: data[key].editorsPick,
-                    popular: data[key].popular,
-                    imageUrl: data[key].imageUrl,
-                    title: data[key].title,
-                    author: newRandomAuthor() ,
-                    date: newRandomDate() ,
-                    timeToRead: newRandomRead(),
-                }
-                postList.push( post )
-                featuredPostList = postList.filter( post => post.featured )
-                popularPostList = postList.filter( post => post.popular )
-                editorsPick = postList.filter( post => post.editorsPick )
-            }
+        success: response => {
+            // for ( const key in data ) {
+            //     let post = {
+            //         id: key,
+            //         category: data[key].category,
+            //         content: data[key].content,
+            //         featured: data[key].featured,
+            //         editorsPick: data[key].editorsPick,
+            //         popular: data[key].popular,
+            //         imageUrl: data[key].imageUrl,
+            //         title: data[key].title,
+            //         author: newRandomAuthor() ,
+            //         date: newRandomDate() ,
+            //         timeToRead: newRandomRead(),
+            //     }
+            //     postList.push( post )
+            //     featuredPostList = postList.filter( post => post.featured )
+            //     popularPostList = postList.filter( post => post.popular )
+            //     editorsPick = postList.filter( post => post.editorsPick )
+            // }
+            console.log(response.data.entries)
+            postList = response.data.entries
+            console.log("POSTLIST ",postList)
+            featuredPostList = postList.filter( post => post.featured )
+            popularPostList = postList.filter( post => post.popular )
+            editorsPick = postList.filter( post => post.editorsPick )
         },
         async: false
     });
