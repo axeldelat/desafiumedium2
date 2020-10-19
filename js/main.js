@@ -106,8 +106,6 @@ const postPrint = () => {
                                 <img src="${postList[post].imageUrl}" class="img-fluid" alt="">
                             </div>
                         </div>
-
-
                         <div class="modal fade" id="${postList[post].id}">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -126,7 +124,6 @@ const postPrint = () => {
                             </div>
                         </div>
                     </div>
-
                     </li>
         `
         $("#all-posts").html("");
@@ -159,7 +156,6 @@ const postPrint = () => {
                             </div>
                         </div>
                     </div>
-
                     <div class="modal fade" id="${featured4[0].id}">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -203,7 +199,6 @@ const postPrint = () => {
                 </div>
             </div>
     </div>
-
     <div class="modal fade" id="${featured4[1].id}">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -222,7 +217,6 @@ const postPrint = () => {
                             </div>
                         </div>
                     </div>
-
 </li>
 <li class="media" style="margin-bottom: inherit;" data-toggle="modal" data-target="#${featured4[2].id}">
     <img src="${featured4[2].imageUrl}" class="mr-3" style="width: 100px; heigth:100px;">
@@ -245,7 +239,6 @@ const postPrint = () => {
                 </div>
             </div>
     </div>
-
     <div class="modal fade" id="${featured4[2].id}">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -264,7 +257,6 @@ const postPrint = () => {
                             </div>
                         </div>
                     </div>
-
 </li>
 <li class="media" style="margin-bottom: inherit;" data-toggle="modal" data-target="#${featured4[3].id}">
     <img src="${featured4[3].imageUrl}" class="mr-3" style="width: 100px; heigth:100px;">
@@ -287,7 +279,6 @@ const postPrint = () => {
                 </div>
             </div>
     </div>
-
     <div class="modal fade" id="${featured4[3].id}">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -335,7 +326,6 @@ const postPrint = () => {
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="${editorsPickFront[0].id}">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -354,8 +344,6 @@ const postPrint = () => {
                             </div>
                         </div>
                     </div>
-
-
     `
     $( `${textNodeEditorsPick}` ).appendTo('#editors-pick')
 
@@ -389,7 +377,6 @@ const postPrint = () => {
                                     </div>
                                 </div>
                             </div>
-
                             <div class="modal fade" id="${post.id}">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
